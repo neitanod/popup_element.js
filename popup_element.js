@@ -1,7 +1,7 @@
 var PopUpElement = function(elm, options){
 
   // Default options:
-  default_options = {
+  var default_options = {
     allowKeyboardControl: true,
     closeKey: 27,
     fullscreen: false,
@@ -13,7 +13,7 @@ var PopUpElement = function(elm, options){
     closeAndDestroy: false,
   }
 
-  this.options = jQuery.extend(default_options , options);
+  this.options = jQuery.extend(default_options, options);
   // End of default options
 
   var that = this;
@@ -33,7 +33,7 @@ var PopUpElement = function(elm, options){
       //var $subcontainer = jQuery('<div class="popupelm-subcontainer"></div>');
       $bg       .css({zIndex: 1000000, position: 'fixed', width: '100%', height: $(document).height(), top: 0, display: 'none', opacity: 0.6, backgroundColor: "black" }).appendTo(body);
       $container.css({zIndex: 1000001, position: 'absolute', width: '100%', height: $(document).height(), top: 0, display: 'none' }).appendTo(body);
-      $elm.css({position:'relative', display: 'block', top: body.scrollTop()+(Math.max(($(window).height()-$elm.height())/2, 0)), left: (body.width()-$elm.width())/2 }).appendTo($container);
+      $elm.css({position:'fixed', display: 'block', top: (Math.max(($(window).height()-$elm.height())/2, 0)), left: (body.width()-$elm.width())/2 }).appendTo($container);
       //$subcontainer.css({position: 'relative', top: '50%'}).appendTo($container);
       $container.click(function(ev) {
         if($container[0] == ev.target){
@@ -96,7 +96,7 @@ var PopUpElement = function(elm, options){
       }
     }
 
-    var topVal = jQuery(window).scrollTop() + Math.max(($(window).height()-$elm.height())/2, 0);
+    var topVal = Math.max(($(window).height()-$elm.height())/2, 0);
     $bg.css({top: 0, height: $(document).height()+1000 });
     $elm.css({top: topVal, left: (body.width()-$elm.width())/2 });
   }
